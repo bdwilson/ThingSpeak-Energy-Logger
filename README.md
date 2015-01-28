@@ -14,7 +14,7 @@ Requirements
 Installation
 --------------------
 1. Create a Thingspeak account and create a new channel.
-2. Name your fields in the channel <b>the Display Name of your Eneryg Device
+2. Name your fields in the channel <b>the Display Name of your Energy Device
 from [SmartThings](https://graph.api.smartthings.com/device/list), then append
 .power to it.</b> For instance, if my device is called "Panel 1 (Generator)" my
 Field 1 name would be "Panel 1 (Generator).power"
