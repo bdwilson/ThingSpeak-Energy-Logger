@@ -36,8 +36,12 @@ preferences {
         input "channelId", "number", title: "Channel id"
     }
 
+    section ("ThinkSpeak read key...") {
+        input "readKey", "text", title: "Read key"
+    }
+
     section ("ThinkSpeak write key...") {
-        input "channelKey", "text", title: "Channel key"
+        input "writeKey", "text", title: "Write key"
     }
 }
 
@@ -78,7 +82,7 @@ private getFieldMap(channelInfo) {
 private updateChannelInfo() {
     log.debug "Retrieving channel info for ${channelId}"
 
-    def url = "http://api.thingspeak.com/channels/${channelId}/feed.json?key=${channelKey}&results=0"
+    def url = "https://api.thingspeak.com/channels/${channelId}/feed.json?key=${readKey}&results=0"
     httpGet(url) {
         response ->
         if (response.status != 200 ) {
@@ -102,7 +106,7 @@ private logField(evt, field, Closure c) {
     def value = c(evt.value)
     log.debug "Logging to channel ${channelId}, ${fieldNum}, value ${value}"
 
-    def url = "http://api.thingspeak.com/update?key=${channelKey}&${fieldNum}=${value}"
+    def url = "https://api.thingspeak.com/update?key=${writeKey}&${fieldNum}=${value}"
     httpGet(url) { 
         response -> 
         if (response.status != 200 ) {
